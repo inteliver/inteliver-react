@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.scss';
-import Image from './Image';
+import './App.css';
+import Image from './inteliver/Image';
 
 const App = () => (
   <div className="App">

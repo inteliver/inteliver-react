@@ -1,7 +1,34 @@
 {
   "name": "inteliver-react",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.2",
+  "description": "This package is Inteliver's official SDK for react framework. Using this SDK you can integrate your react project with inteliver image management service.",
+  "keywords": [
+    "inteliver",
+    "sdk",
+    "image management",
+    "react",
+    "image compression"
+  ],
+  "homepage": "https://inteliver.com",
+  "bugs": {
+    "url": "https://github.com/inteliver/inteliver-react/issues",
+    "email": "inteliver.ai@gmail.com"
+  },
+  "author": "Amir Lavasani <amirm.lavasani@gmail.com> (https://www.linkedin.com/in/amir-lavasani/)",
+  "private": false,
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inteliver/inteliver-react"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -10,7 +37,6 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -21,7 +47,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rm -rf ./lib",
+    "build:package": "tsc --build \"./tsconfig.json\""
   },
   "eslintConfig": {
     "extends": [
@@ -44,7 +72,6 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.34.0",
-    "css-loader": "5.2.6",
     "eslint": "^8.0.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -55,9 +82,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
-    "prettier": "^2.7.1",
-    "sass": "^1.54.5",
-    "sass-loader": "10.1.1",
-    "style-loader": "2.0.0"
+    "prettier": "^2.7.1"
   }
 }
