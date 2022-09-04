@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
-// import classNames from 'classnames';
-// import styles from './image.module.scss';
+import Configs from '../Configs';
 
 interface ImageProps {
   /**
@@ -19,81 +18,59 @@ interface ImageProps {
  */
 
 const Image: FunctionComponent<ImageProps> = ({ src, alt }: ImageProps) => {
-  const inteliverBaseURL = 'https://res.inteliver.com/media/v1';
-  const inteliverCloudName = 'zap';
-  const intleiverProtocol = 'uri';
-  // const inteliverCommands = '';
+  const inteliverBaseURL = Configs.INTELIVER_BASE_URL;
+  const inteliverCloudName = Configs.INTELIVER_CLOUD_NAME;
+  const intleiverProtocol = Configs.INTELIVER_PROTOCOL;
+
+  const optimizeCommandBuilder = (
+    width: number,
+    format: string,
+    formatQuality: number
+  ) => `i_w_${width},i_o_resize,i_o_format_${format}_${formatQuality}`;
 
   const buildInteliverURL = (commands: string) =>
     `${inteliverBaseURL}/${inteliverCloudName}/${commands}/${intleiverProtocol}/${src}`;
 
-  const mobileWidthBreakPoint = 420;
-  const tabletWidthBreakPoint = 810;
-  const desktopWidthBreakPoint = 1920;
-  const mobileWebpSrcSet = buildInteliverURL(
-    'i_w_250,i_o_resize,i_o_format_webp_75'
-  );
+  const imageWidthResolutions = Configs.IMAGE_WIDTH_33VW;
+  const resolutionMultiplier = Configs.IMAGE_WIDTH_33VW_MULTIPLIER;
 
-  const tabletWebpSrcSet = buildInteliverURL(
-    'i_w_350,i_o_resize,i_o_format_webp_75'
-  );
-
-  const desktopWebpSrcSet = buildInteliverURL(
-    'i_w_450,i_o_resize,i_o_format_webp_75'
-  );
-  const mobileJpegSrcSet = buildInteliverURL(
-    'i_w_250,i_o_resize,i_o_format_jpeg_80'
-  );
-
-  const tabletJpegSrcSet = buildInteliverURL(
-    'i_w_350,i_o_resize,i_o_format_jpeg_80'
-  );
-
-  const desktopJpegSrcSet = buildInteliverURL(
-    'i_w_450,i_o_resize,i_o_format_jpeg_80'
-  );
-
-  return (
+  const pictureElement = (
     <picture>
-      {/* WEBP format for mobile */}
-      <source
-        media={`(max-width: ${mobileWidthBreakPoint}px)`}
-        srcSet={mobileWebpSrcSet}
-        type="image/webp"
-      />
-      {/* WEBP format for tablet */}
-      <source
-        media={`(max-width: ${tabletWidthBreakPoint}px)`}
-        srcSet={tabletWebpSrcSet}
-        type="image/webp"
-      />
-      {/* WEBP format for desktop */}
-      <source
-        media={`(max-width: ${desktopWidthBreakPoint}px)`}
-        srcSet={desktopWebpSrcSet}
-        type="image/webp"
-      />
-      {/* JPEG format for mobile */}
-      <source
-        media={`(max-width: ${mobileWidthBreakPoint}px)`}
-        srcSet={mobileJpegSrcSet}
-        type="image/jpg"
-      />
-      {/* JPEG format for tablet */}
-      <source
-        media={`(max-width: ${tabletWidthBreakPoint}px)`}
-        srcSet={tabletJpegSrcSet}
-        type="image/jpg"
-      />
-      {/* JPEG format for desktop */}
-      <source
-        media={`(max-width: ${desktopWidthBreakPoint}px)`}
-        srcSet={desktopJpegSrcSet}
-        type="image/jpg"
-      />
+      {/* WEBP format for all resoluions */}
+      {imageWidthResolutions.map((imageWidth) => (
+        <source
+          media={`(max-width: ${imageWidth * resolutionMultiplier}px)`}
+          srcSet={buildInteliverURL(
+            optimizeCommandBuilder(
+              imageWidth,
+              'webp',
+              Configs.OPTIMIZATION_WEBP_QUALITY
+            )
+          )}
+          type="image/webp"
+          key={`${imageWidth}_webp`}
+        />
+      ))}
+      {/* JPEG format for all resoluions */}
+      {imageWidthResolutions.map((imageWidth) => (
+        <source
+          media={`(max-width: ${imageWidth * resolutionMultiplier}px)`}
+          srcSet={buildInteliverURL(
+            optimizeCommandBuilder(
+              imageWidth,
+              'jpeg',
+              Configs.OPTIMIZATION_JPEG_QUALITY
+            )
+          )}
+          type="image/jpeg"
+          key={`${imageWidth}_jpeg`}
+        />
+      ))}
       <img src={src} alt={alt} />
     </picture>
   );
+
+  return pictureElement;
 };
 
 Image.defaultProps = {};
