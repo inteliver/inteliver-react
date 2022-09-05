@@ -63,10 +63,10 @@ const Image: FunctionComponent<ImageProps> = ({
   width,
   height,
 }: ImageProps) => {
-  const configs = useContext(InteliverContext);
-
+  const contextSettings = useContext(InteliverContext);
+  const inteliverCloudName =
+    contextSettings.cloudname || Configs.INTELIVER_DEFAULT_CLOUD_NAME;
   const inteliverBaseURL = Configs.INTELIVER_BASE_URL;
-  const inteliverCloudName = Configs.INTELIVER_DEFAULT_CLOUD_NAME;
   const intleiverProtocol = Configs.INTELIVER_PROTOCOL;
 
   const optimizeCommandBuilder = (
@@ -77,9 +77,6 @@ const Image: FunctionComponent<ImageProps> = ({
 
   const buildInteliverURL = (commands: string) =>
     `${inteliverBaseURL}/${inteliverCloudName}/${commands}/${intleiverProtocol}/${src}`;
-
-  // const imageWidthResolutions = Configs.IMAGE_WIDTH_100VW;
-  // const resolutionMultiplier = Configs.IMAGE_WIDTH_100VW_MULTIPLIER;
 
   const buildSrcSetByResolutionArray = (
     widthsObject: { [s: string]: number },
@@ -141,51 +138,6 @@ const Image: FunctionComponent<ImageProps> = ({
       />
     </picture>
   );
-
-  // const pictureElement2 = (
-  //   <picture>
-  //     {/* WEBP format for all resoluions */}
-  //     {imageWidthResolutions.map((imageWidth) => (
-  //       <source
-  //         media={`(max-width: ${imageWidth * resolutionMultiplier}px)`}
-  //         srcSet={buildInteliverURL(
-  //           optimizeCommandBuilder(
-  //             imageWidth,
-  //             'webp',
-  //             Configs.OPTIMIZATION_WEBP_QUALITY
-  //           )
-  //         )}
-  //         type="image/webp"
-  //         key={`${imageWidth}_webp`}
-  //       />
-  //     ))}
-  //     {/* JPEG format for all resoluions */}
-  //     {imageWidthResolutions.map((imageWidth) => (
-  //       <source
-  //         media={`(max-width: ${imageWidth * resolutionMultiplier}px)`}
-  //         srcSet={buildInteliverURL(
-  //           optimizeCommandBuilder(
-  //             imageWidth,
-  //             'jpeg',
-  //             Configs.OPTIMIZATION_JPEG_QUALITY
-  //           )
-  //         )}
-  //         type="image/jpeg"
-  //         key={`${imageWidth}_jpeg`}
-  //       />
-  //     ))}
-  //     <img
-  //       src={src}
-  //       alt={alt}
-  //       loading={loading}
-  //       style={style}
-  //       referrerPolicy={referrerPolicy}
-  //       width={width}
-  //       height={height}
-  //       className={className}
-  //     />
-  //   </picture>
-  // );
 
   return pictureElement;
 };
