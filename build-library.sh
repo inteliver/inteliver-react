@@ -12,3 +12,6 @@ cp -r ./types/* ./lib
 
 # package the lib folder
 yarn pack
+
+# To publish to npm
+# npm pulish
