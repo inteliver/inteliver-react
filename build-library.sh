@@ -14,4 +14,6 @@ cp -r ./types/* ./lib
 yarn pack
 
 # To publish to npm
+# update version
+# build
 # npm pulish
