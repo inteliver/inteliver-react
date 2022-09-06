@@ -1,3 +1,11 @@
+![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m792625244-6873250b63bc5655343e521c)
+![npm](https://img.shields.io/npm/v/inteliver-react)
+![npm](https://img.shields.io/npm/dw/inteliver-react)
+![GitHub](https://img.shields.io/github/license/inteliver/inteliver-react)
+![npm (prod) dependency version](https://img.shields.io/npm/dependency-version/inteliver-react/react)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/inteliver/inteliver-react)
+![GitHub Org's stars](https://img.shields.io/github/stars/inteliver?style=social)
+
 # Getting Started with inteliver-react
 
 This repository is [Inteliver](https://www.inteliver.com)'s official SDK for react framework. Using this SDK you can integrate your react project with inteliver image management service.
