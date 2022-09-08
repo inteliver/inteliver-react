@@ -30,7 +30,7 @@ using **yarn**:
 
 ## Getting Started
 
-To get started quickly after installing the package, first import **InteliverProvider** in your `index.js` or `index.ts` file and wrap your **<App />** with **InteliverProvider** as shown below.
+To get started quickly after installing the package, first import **InteliverProvider** in your `index.js` or `index.ts` file and wrap your `<App />` with **InteliverProvider** as shown below.
 
 `import { InteliverProvider } from 'inteliver-react/lib';`
 
